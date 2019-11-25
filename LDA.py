@@ -17,6 +17,9 @@ for i in range(0,10):
 C1=C1/10.0
 C2=C2/10.0
 C=(C1+C2)/2.0
+print('C1=',C1)
+print('C2=',C2)
+print('C=',C)
 #Between class scatter matrix
 SB=np.zeros((2,2))
 SB=((C1-C).dot((C1-C).transpose()) + (C2-C).dot((C2-C).transpose()))/2.0
@@ -32,7 +35,8 @@ for i in range(0,10):
     S2=S2 + (x2_comp-C2).dot((x2_comp-C2).transpose())
 SW=(S1 + S2)/2.0
 
-
+print('SB=',SB)
+print('SW=',SW)
 
 #Finding eigenvector
 w,E = LA.eig((LA.inv(SW)).dot(SB))
@@ -40,6 +44,8 @@ y1=np.zeros((2,10))
 y2=np.zeros((2,10))
 E[0][0],E[0][1]=E[0][1],E[0][0]
 E[1][0],E[1][1]=E[1][1],E[1][0]
+print('w=',w)
+print('E=',E)
 y1=(E.transpose()).dot(x1)
 y2=(E.transpose()).dot(x2)
 
@@ -52,14 +58,9 @@ r1=np.zeros((2,10))
 r2=np.zeros((2,10))
 r1=E.dot(y1)
 r2=E.dot(y2)
-print(r1)
-print(r2)
+print('x1=',r1)
+print('x1=',r2)
 
-'''
-#x2=np.zeros((2,12))
-#x2[0]=y[0]*v[0][0]
-#x2[1]=y[0]*v[0][1]
-'''
 
 n=np.zeros(10)
 m=E[0][1]/E[0][0]

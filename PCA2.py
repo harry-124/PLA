@@ -15,25 +15,29 @@ for i in range(0,12):
 mean=mean/12.0
 cov_comp=cov_comp/12.0
 cov=cov_comp-mean.dot(mean.transpose())
+print('C=',cov)
 w, v = LA.eig(cov)
-print(w)
+print('D=',w)
+print('E=',v)
 v=v.transpose()
 y=(v).dot(x)
-
+print('y=',y)
 #Reconstruction
 x1=v.transpose().dot(y)
 x2=np.zeros((2,12))
 x2[0]=y[0]*v[0][0]
 x2[1]=y[0]*v[0][1]
-
+print('x1=',x1)
+print('x2=',x2)
 # Distance 
 m=v[0][1]/v[0][0]
 r=math.sqrt(1+m**2)
 d=np.zeros((12))
 for i in range(0,12):
     d[i]=math.sqrt((x[1][i]**2 + x[0][i]**2)-(abs(x[1][i]-m*x[0][i])/r)**2)
-print(d)
-print(y[0])
+print('y1=',d)
+print('D1=',d)
+
 
 #GRAPHS
 z=np.zeros((1,12))
